@@ -1,19 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Puzzle Game</h1>
+    <PuzzlePage @puzzle-changed="($event) => (selectedPuzzleID = $event)" />
+    <RecordsPage />
+    <SliderPuzzle :puzzleId="selectedPuzzleID"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SliderPuzzle from "./components/SliderPuzzle.vue";
+import PuzzlePage from "./components/Puzzles.vue";
+import RecordsPage from "./components/Records.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    SliderPuzzle,
+    PuzzlePage,
+    RecordsPage,
+  },
+  data() {
+    console.log("Hello World");
+    return { selectedPuzzleID: "cut-easy" };
+  },
+};
 </script>
 
 <style>
@@ -24,5 +33,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+button {
+  padding: 8px 10px;
+  width: 125px;
+  background: rgba(17, 46, 17, 0.84);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
